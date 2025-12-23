@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel4U 探索世界 | Bootstrap 旅遊網站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 CSS CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap Icons（可選） -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  />
+
+  <style>
+    /* Hero 區塊背景 */
+    .hero-section {
+      position: relative;
+      min-height: 70vh;
+      background-image: url("https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 1rem 5rem;
+    }
+
+    .hero-search-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 1rem;
+    }
+
+    /* 區塊標題的橫線 */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.3rem;
+      width: 60%;
+      height: 3px;
+      border-radius: 999px;
+      background: #0d6efd;
+    }
+
+    /* 卡片圖片高度 */
+    .tour-card img,
+    .destination-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* footer 背景 */
+    footer {
+      background: #0b2545;
+      color: #fff;
+    }
+
+    /* 小螢幕調整 */
+    @media (max-width: 576px) {
+      .hero-content {
+        padding-top: 5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top">
+        <i class="bi bi-globe-americas me-1"></i> Travel4U
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#hot-deals">熱門行程</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#themes">主題旅遊</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#destinations">精選目的地</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#reviews">顧客評價</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">聯絡我們</a>
+          </li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-warning ms-lg-3">
+          立即諮詢
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero + 搜尋區 -->
+  <header id="top" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6 text-center text-lg-start text-white">
+          <span class="badge bg-warning text-dark mb-3">
+            熱門🔸早鳥優惠 5% OFF
+          </span>
+          <h1 class="display-5 fw-bold mb-3">
+            想去哪裡？<br />Travel4U 帶你看世界
+          </h1>
+          <p class="lead mb-4">
+            參考山富旅遊等網站設計，整合國內外團體、自由行、機+酒，一站式完成你的旅行規劃。
+          </p>
+          <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+            <a href="#hot-deals" class="btn btn-primary btn-lg">
+              查看熱銷行程
+            </a>
+            <a href="#themes" class="btn btn-outline-light btn-lg">
+              探索主題旅遊
+            </a>
+          </div>
+        </div>
+
+        <!-- 搜尋卡片 -->
+        <div class="col-lg-6">
+          <div class="card shadow hero-search-card">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-3">
+                <i class="bi bi-search-heart me-1 text-primary"></i>
+                快速搜尋行程
+              </h5>
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label" for="fromCity">出發地</label>
+                    <select id="fromCity" class="form-select">
+                      <option selected>台北</option>
+                      <option>台中</option>
+                      <option>高雄</option>
+                      <option>台南</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="toCity">目的地</label>
+                    <input
+                      id="toCity"
+                      type="text"
+                      class="form-control"
+                      placeholder="東京、首爾、沖繩..."
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="startDate">出發日期</label>
+                    <input id="startDate" type="date" class="form-control" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="days">天數</label>
+                    <select id="days" class="form-select">
+                      <option selected>3 天</option>
+                      <option>4 天</option>
+                      <option>5 天</option>
+                      <option>7 天以上</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="travelType">旅遊類型</label>
+                    <select id="travelType" class="form-select">
+                      <option selected>跟團旅遊</option>
+                      <option>自由行（機+酒）</option>
+                      <option>國內小旅行</option>
+                      <option>客製化行程</option>
+                    </select>
+                  </div>
+                  <div class="col-12 d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      <i class="bi bi-search me-1"></i> 搜尋行程
+                    </button>
+                  </div>
+                  <div class="col-12 text-center">
+                    <small class="text-muted">
+                      顯示結果僅為範例，實際報名請洽旅行社。
+                    </small>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /搜尋卡片 -->
+      </div>
+    </div>
+  </header>
+
+  <!-- 熱門行程 Hot Deals -->
+  <section id="hot-deals" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">熱門行程 Hot Deals</h2>
+        <p class="text-muted mb-0">
+          結合山富旅遊等網站常見版型，採用 Bootstrap Cards 呈現高人氣路線。
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- 卡片1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card tour-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="東京賞櫻"
+            />
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-danger">限時特價</span>
+                <span class="text-muted small">
+                  5 日｜含機+酒
+                </span>
+              </div>
+              <h5 class="card-title">東京迪士尼．富士山溫泉 5 日遊</h5>
+              <p class="card-text flex-grow-1">
+                暢遊東京必去景點，安排一晚溫泉旅館，搭配當季限定美食，適合親子與情侶出遊。
+              </p>
+              <div class="d-flex justify-content-between align-items-end">
+                <div>
+                  <span class="fw-bold text-primary">NT$ 32,900 起</span><br />
+                  <small class="text-muted">含稅、含小費</small>
+                </div>
+                <a href="#contact" class="btn btn-outline-primary btn-sm">
+                  索取詳細行程
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card tour-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="濟州島"
+            />
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-success">人氣 No.1</span>
+                <span class="text-muted small">4 日｜直飛</span>
+              </div>
+              <h5 class="card-title">韓國濟州島火山島秘境 4 日</h5>
+              <p class="card-text flex-grow-1">
+                被譽為「韓國夏威夷」的濟州島，火山地貌、森林步道與海岸風光一次收藏。
+              </p>
+              <div class="d-flex justify-content-between align-items-end">
+                <div>
+                  <span class="fw-bold text-primary">NT$ 24,800 起</span><br />
+                  <small class="text-muted">含半自助自由活動時間</small>
+                </div>
+                <a href="#contact" class="btn btn-outline-primary btn-sm">
+                  我想報名
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card tour-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="國內小旅行"
+            />
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-info text-dark">國內小旅行</span>
+                <span class="text-muted small">2 日｜巴士團</span>
+              </div>
+              <h5 class="card-title">花東縱谷療癒秘境 2 日遊</h5>
+              <p class="card-text flex-grow-1">
+                沿著縱谷漫遊，入住溫泉飯店，搭配在地無菜單料理，適合放空充電的小旅行。
+              </p>
+              <div class="d-flex justify-content-between align-items-end">
+                <div>
+                  <span class="fw-bold text-primary">NT$ 6,990 起</span><br />
+                  <small class="text-muted">保證出團日期多</small>
+                </div>
+                <a href="#contact" class="btn btn-outline-primary btn-sm">
+                  加入候補名單
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /卡片3 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 主題旅遊 Themes（用 Accordion + Icons） -->
+  <section id="themes" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">主題旅遊 Themes</h2>
+        <p class="text-muted mb-0">
+          用 Bootstrap Accordion 呈現不同主題，例如親子、蜜月、背包客、公司獎勵旅遊。
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="list-group shadow-sm">
+            <div class="list-group-item d-flex align-items-center">
+              <i class="bi bi-people-fill fs-3 text-primary me-3"></i>
+              <div>
+                <h5 class="mb-1">親子樂園行程</h5>
+                <small class="text-muted">
+                  東京迪士尼、環球影城、親子農場體驗，專車接送不趕行程。
+                </small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+              <i class="bi bi-heart-fill fs-3 text-danger me-3"></i>
+              <div>
+                <h5 class="mb-1">蜜月、情侶度假</h5>
+                <small class="text-muted">
+                  馬爾地夫水上屋、峇里島 Villa、沖繩海景飯店，打造專屬兩人的回憶。
+                </small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+              <i class="bi bi-backpack-fill fs-3 text-success me-3"></i>
+              <div>
+                <h5 class="mb-1">背包客自由行</h5>
+                <small class="text-muted">
+                  機票＋住宿＋交通票券一次搞定，適合喜歡自己排行程的你。
+                </small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+              <i class="bi bi-building-check fs-3 text-warning me-3"></i>
+              <div>
+                <h5 class="mb-1">企業獎勵旅遊 / 團體包團</h5>
+                <small class="text-muted">
+                  客製化團體行程、會議＋旅遊（MICE）、員工旅遊規劃。
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="col-lg-6">
+          <div class="accordion shadow-sm" id="themeAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  為什麼選擇 Travel4U 旅行社？
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#themeAccordion"
+              >
+                <div class="accordion-body">
+                  <ul class="mb-0">
+                    <li>資深領隊、導遊團隊，行程內容透明公開。</li>
+                    <li>參考大型旅行社（如山富旅遊）的規劃模式，設計安全又好玩的動線。</li>
+                    <li>提供多元付款方式與旅遊保障保險方案。</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  自由行可以幫我什麼？
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#themeAccordion"
+              >
+                <div class="accordion-body">
+                  <p class="mb-2">
+                    我們可以幫你處理機票、飯店、當地交通票券（JR PASS、地鐵卡）、WiFi、保險等。
+                  </p>
+                  <ul class="mb-0">
+                    <li>提供行程建議，不強迫購買套裝團。</li>
+                    <li>適合想自己安排行程，但又不想處理瑣事的人。</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  國內旅遊有什麼特色？
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#themeAccordion"
+              >
+                <div class="accordion-body">
+                  <ul class="mb-0">
+                    <li>結合在地小農、特色民宿、秘境步道。</li>
+                    <li>小團制巴士旅遊，不塞人、不趕路。</li>
+                    <li>適合銀髮族、親子家庭與公司旅遊。</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Accordion -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 精選目的地 Destinations（Cards + Carousel） -->
+  <section id="destinations" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">精選目的地 Destinations</h2>
+        <p class="text-muted mb-0">
+          用 Bootstrap Carousel 搭配卡片呈現：日本、韓國、歐洲、國內必去景點。
+        </p>
+      </div>
+
+      <!-- Carousel -->
+      <div id="destCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner rounded-4 shadow">
+          <div class="carousel-item active">
+            <img
+              src="https://images.pexels.com/photos/208427/pexels-photo-208427.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="d-block w-100"
+              alt="日本"
+            />
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+              <h5>Japan 日本</h5>
+              <p>東京、大阪、北海道、沖繩，四季皆有不同景色與主題行程。</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.pexels.com/photos/237211/pexels-photo-237211.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="d-block w-100"
+              alt="韓國"
+            />
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+              <h5>Korea 韓國</h5>
+              <p>首爾購物、美妝、咖啡廳巡禮，搭配濟州島自然風光。</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="d-block w-100"
+              alt="歐洲"
+            />
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+              <h5>Europe 歐洲</h5>
+              <p>義大利、瑞士、法國一次收集，搭配經典河輪與火車路線。</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#destCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#destCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Cards Row -->
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card destination-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/2082109/pexels-photo-2082109.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="東京塔"
+            />
+            <div class="card-body">
+              <h5 class="card-title">東京 Tokyo</h5>
+              <p class="card-text">
+                結合城市與郊區，一次玩遍晴空塔、淺草寺、富士山河口湖。
+              </p>
+              <span class="badge bg-primary">四季皆宜</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card destination-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="首爾"
+            />
+            <div class="card-body">
+              <h5 class="card-title">首爾 Seoul</h5>
+              <p class="card-text">
+                明洞、弘大、林蔭大道，一次滿足購物、美食、打卡景點。
+              </p>
+              <span class="badge bg-danger">購物天堂</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card destination-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="花蓮"
+            />
+            <div class="card-body">
+              <h5 class="card-title">花蓮 Hualien</h5>
+              <p class="card-text">
+                太魯閣峽谷、清水斷崖、海景民宿，適合放空的小旅行。
+              </p>
+              <span class="badge bg-success">國內必去</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card destination-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              class="card-img-top"
+              alt="瑞士"
+            />
+            <div class="card-body">
+              <h5 class="card-title">瑞士 Switzerland</h5>
+              <p class="card-text">
+                少女峰、鐵力士、湖光山色，歐洲經典夢幻景點。
+              </p>
+              <span class="badge bg-warning text-dark">夢幻景點</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 顧客評價 Reviews（Cards + Stars） -->
+  <section id="reviews" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">顧客評價 Reviews</h2>
+        <p class="text-muted mb-0">
+          簡單展示幾則滿意度回饋，老師一看就知道是旅遊網站。
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-person-circle fs-3 me-2 text-primary"></i>
+                <div>
+                  <h6 class="mb-0">小芳｜東京 5 日</h6>
+                  <small class="text-muted">2025 / 03 出團</small>
+                </div>
+              </div>
+              <p class="mb-2">
+                領隊超專業，行程不會太趕，還會分享當地小吃與拍照點，整體非常滿意！
+              </p>
+              <div class="text-warning">
+                ★★★★★
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-person-circle fs-3 me-2 text-success"></i>
+                <div>
+                  <h6 class="mb-0">阿哲｜花東 2 日</h6>
+                  <small class="text-muted">2025 / 04 出團</small>
+                </div>
+              </div>
+              <p class="mb-2">
+                司機與導遊都很親切，景點安排得剛剛好，爸媽走起來也不會太累。
+              </p>
+              <div class="text-warning">
+                ★★★★☆
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-person-circle fs-3 me-2 text-danger"></i>
+                <div>
+                  <h6 class="mb-0">Mia｜首爾自由行</h6>
+                  <small class="text-muted">2025 / 02 出發</small>
+                </div>
+              </div>
+              <p class="mb-2">
+                幫我訂好機+酒和交通卡，就算英文不好也玩得很安心，下次還會再找你們。
+              </p>
+              <div class="text-warning">
+                ★★★★★
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 聯絡我們 Contact（Bootstrap Form） -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">聯絡我們 Contact</h2>
+        <p class="text-muted mb-0">
+          這裡用 Bootstrap Form 做一個簡單「諮詢/報名表單」，當作作業非常合理。
+        </p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-3">
+                <i class="bi bi-chat-left-text me-1 text-primary"></i>
+                線上諮詢表
+              </h5>
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">姓名</label>
+                    <input
+                      type="text"
+                      id="name"
+                      class="form-control"
+                      placeholder="請輸入姓名"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">聯絡電話</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      class="form-control"
+                      placeholder="09xx-xxx-xxx"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-control"
+                      placeholder="example@mail.com"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="plan" class="form-label">有興趣的行程</label>
+                    <select id="plan" class="form-select">
+                      <option selected>東京迪士尼．富士山 5 日</option>
+                      <option>濟州島秘境 4 日</option>
+                      <option>花東縱谷 2 日</option>
+                      <option>其他（請在備註說明）</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="people" class="form-label">預計出遊人數</label>
+                    <input
+                      type="number"
+                      id="people"
+                      class="form-control"
+                      min="1"
+                      max="50"
+                      value="2"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="budget" class="form-label">預算範圍（每人）</label>
+                    <select id="budget" class="form-select">
+                      <option>NT$ 10,000 以下</option>
+                      <option>NT$ 10,000 ~ 30,000</option>
+                      <option>NT$ 30,000 以上</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="message" class="form-label">備註 / 其他需求</label>
+                    <textarea
+                      id="message"
+                      rows="3"
+                      class="form-control"
+                      placeholder="例如：希望素食、想安排自由時間、搭配公司員工旅遊等"
+                    ></textarea>
+                  </div>
+                  <div class="col-12 form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="agree"
+                      required
+                    />
+                    <label class="form-check-label" for="agree">
+                      我已閱讀並同意隱私權政策（範例文字）。
+                    </label>
+                  </div>
+                  <div class="col-12 d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      送出諮詢
+                    </button>
+                  </div>
+                  <div class="col-12 text-center">
+                    <small class="text-muted">
+                      表單僅為課堂作業示意，實際報名請以旅行社官網為主。
+                    </small>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- 聯絡資訊小卡 -->
+        <div class="col-lg-4 d-none">
+          <!-- 如果老師只要一欄，可以把上面 col-lg-8 改 7，這邊改 5 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <div class="fw-bold mb-1">
+            <i class="bi bi-globe-americas me-1"></i> Travel4U 旅遊網站示範
+          </div>
+          <small class="text-light">
+            本網站為 Bootstrap 課程作業示範，部分內容參考台灣旅行社網站排版風格，非實際販售旅遊商品。
+          </small>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <small class="text-light">
+            © 2025 Travel4U Demo. All rights reserved.
+          </small>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle（含 Popper） -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
