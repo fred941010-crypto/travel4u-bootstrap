@@ -1,147 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>行程詳情</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>行程詳細</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap.min.css">
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">Travel4U</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
-        <li class="nav-item"><a class="nav-link" href="tours.html">行程</a></li>
-        <li class="nav-item">
-          <button class="btn btn-warning ms-2" data-bs-toggle="modal" data-bs-target="#book">
-            報名
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-dark bg-dark px-3">
+<a class="navbar-brand" href="index.html">Travel4U</a>
 </nav>
 
 <div class="container my-5">
+<img src="images/tokyo.jpg" class="img-fluid rounded mb-4">
 
-  <div class="row">
-    <div class="col-md-6">
-      <img src="images/tokyo.jpg" class="img-fluid rounded">
-    </div>
-    <div class="col-md-6">
-      <h2 class="fw-bold">東京富士山五日遊</h2>
-      <span class="badge bg-primary">5 天</span>
-      <span class="badge bg-success">熱門</span>
-      <p class="mt-3">經典日本行程，城市與自然一次體驗。</p>
-      <div class="d-grid gap-2">
-        <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#detail">
-          行程重點
-        </button>
-        <button class="btn btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#notice">
-          注意事項
-        </button>
-        <a href="#days" class="btn btn-outline-dark">每日行程</a>
-      </div>
-    </div>
-  </div>
+<h2>東京迪士尼・富士山 5 日</h2>
 
-  <div class="collapse mt-4" id="detail">
-    <div class="card card-body">
-      富士山五合目、東京市區、溫泉旅館
-    </div>
-  </div>
+<ul>
+<li>東京迪士尼樂園</li>
+<li>富士山五合目</li>
+<li>溫泉旅館住宿</li>
+<li>專業導遊隨團</li>
+</ul>
 
-  <div class="mt-5" id="days">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#d1">Day 1</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#d2">Day 2</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#d3">Day 3</button>
-      </li>
-    </ul>
-
-    <div class="tab-content border border-top-0 p-3">
-      <div class="tab-pane fade show active" id="d1">抵達東京、飯店入住</div>
-      <div class="tab-pane fade" id="d2">富士山、溫泉旅館</div>
-      <div class="tab-pane fade" id="d3">東京市區自由活動</div>
-    </div>
-  </div>
-
-  <div class="accordion mt-5" id="faq">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
-          是否含餐？
-        </button>
-      </h2>
-      <div class="accordion-collapse collapse show" id="q1">
-        <div class="accordion-body">
-          含早餐與一晚溫泉晚餐
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
-          是否含門票？
-        </button>
-      </h2>
-      <div class="accordion-collapse collapse" id="q2">
-        <div class="accordion-body">
-          行程內景點皆含
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="mb-4">
+<button class="btn btn-success me-2" onclick="alert('已完成報名')">立即報名</button>
+<button class="btn btn-outline-primary me-2" onclick="alert('已加入收藏')">收藏</button>
+<button class="btn btn-outline-danger" onclick="alert('名額剩餘：6 位')">查詢名額</button>
 </div>
 
-<div class="modal fade" id="book">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5>報名表</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <input class="form-control mb-2" placeholder="姓名">
-        <input class="form-control mb-2" placeholder="電話">
-        <select class="form-select">
-          <option>1 人</option>
-          <option>2 人</option>
-          <option>3 人</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-        <button class="btn btn-primary" data-bs-dismiss="modal">送出</button>
-      </div>
-    </div>
-  </div>
+<button class="btn btn-dark" onclick="location.href='tours.html'">返回行程列表</button>
 </div>
 
-<div class="offcanvas offcanvas-end" id="notice">
-  <div class="offcanvas-header">
-    <h5>注意事項</h5>
-    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    護照有效期限需六個月以上
-  </div>
-</div>
-
-<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
