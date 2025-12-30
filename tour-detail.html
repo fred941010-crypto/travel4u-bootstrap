@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>行程介紹</title>
+<title>行程詳情</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -14,54 +14,39 @@
   </div>
 </nav>
 
-<div class="container my-5">
-  <h1 id="title"></h1>
-  <img id="img" class="img-fluid my-4">
+<div class="container my-5" id="content"></div>
 
-  <h3>行程介紹</h3>
-  <p id="desc"></p>
-
-  <h3>精選景點</h3>
-  <ul id="spots"></ul>
-
-  <a id="book" class="btn btn-danger">立即預約</a>
-  <button id="fav" class="btn btn-outline-danger">收藏</button>
-  <a href="tours.html" class="btn btn-secondary">返回列表</a>
-</div>
-
+<script src="js/app.js"></script>
 <script>
 const data = {
   tokyo:{
-    title:"東京富士山",
-    img:"images/tokyo.jpg",
-    desc:"結合東京繁華與富士山壯麗景色，白天探索都市，夜晚欣賞夜景。",
-    spots:["東京鐵塔","淺草雷門","富士山五合目"]
+    title:'東京富士山',
+    img:'images/tokyo.jpg',
+    desc:'五天四夜深入東京與富士山，結合都市購物、自然景觀與經典文化。'
   },
   jeju:{
-    title:"濟州島",
-    img:"images/jeju.jpg",
-    desc:"火山地貌與療癒海岸線，適合慢活與自然探索。",
-    spots:["城山日出峰","漢拏山","濟州瀑布"]
+    title:'濟州島',
+    img:'images/jeju.jpg',
+    desc:'火山地貌、瀑布海岸、慢活度假，適合放空與情侶旅遊。'
   },
   hualien:{
-    title:"花蓮縱谷",
-    img:"images/hualien.jpg",
-    desc:"深入山海之間，體驗台灣最原始的自然美。",
-    spots:["伯朗大道","太魯閣","七星潭"]
+    title:'花蓮縱谷',
+    img:'images/hualien.jpg',
+    desc:'縱谷農田、山海交會，是最療癒的台灣自然路線。'
   }
 };
 
-const p = new URLSearchParams(location.search).get("place");
-document.getElementById("title").innerText = data[p].title;
-document.getElementById("img").src = data[p].img;
-document.getElementById("desc").innerText = data[p].desc;
-document.getElementById("spots").innerHTML = data[p].spots.map(s=>`<li>${s}</li>`).join("");
-document.getElementById("book").href = `booking.html?place=${p}`;
+const p = new URLSearchParams(location.search).get('place');
+const t = data[p];
 
-document.getElementById("fav").onclick = () => {
-  let f = JSON.parse(localStorage.getItem("fav")||"[]");
-  if(!f.includes(p)){ f.push(p); localStorage.setItem("fav",JSON.stringify(f)); alert("已收藏"); }
-};
+document.getElementById('content').innerHTML = `
+<h1>${t.title}</h1>
+<img src="${t.img}" class="img-fluid my-3">
+<p>${t.desc}</p>
+<a href="booking.html?place=${p}" class="btn btn-danger">立即預約</a>
+<button onclick="toggleFavorite('${p}','${t.title}','${t.img}')" class="btn btn-outline-danger ms-2">收藏</button>
+<a href="tours.html" class="btn btn-secondary ms-2">返回列表</a>
+`;
 </script>
 
 </body>
