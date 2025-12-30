@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>我的收藏</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Travel4U</a>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h1>我的收藏</h1>
+  <ul id="list" class="list-group mt-3"></ul>
+</div>
+
+<script>
+const map = {
+  jeju: "濟州島",
+  tokyo: "東京富士山",
+  hualien: "花蓮縱谷"
+};
+
+const fav = JSON.parse(localStorage.getItem("favorites")) || [];
+const ul = document.getElementById("list");
+
+fav.forEach(p => {
+  const li = document.createElement("li");
+  li.className = "list-group-item";
+  li.innerHTML = `${map[p]} 
+    <a href="tour-detail.html?place=${p}" class="btn btn-sm btn-primary float-end">查看</a>`;
+  ul.appendChild(li);
+});
+</script>
+
+</body>
+</html>
