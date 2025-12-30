@@ -7,84 +7,62 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">Travel4U</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="index.html">首頁</a>
-      <a class="nav-link" href="tours.html">所有行程</a>
-      <a class="nav-link" href="favorites.html">我的收藏</a>
-    </div>
+    <a class="text-white" href="favorites.html">我的收藏</a>
   </div>
 </nav>
 
 <div class="container my-5">
-  <h1 id="title" class="mb-4"></h1>
+  <h1 id="title"></h1>
+  <img id="img" class="img-fluid my-4">
 
-  <img id="photo" class="img-fluid rounded mb-4">
+  <h3>行程介紹</h3>
+  <p id="desc"></p>
 
-  <p id="intro" class="fs-5"></p>
+  <h3>精選景點</h3>
+  <ul id="spots"></ul>
 
-  <h4 class="mt-5">行程特色</h4>
-  <ul id="features"></ul>
-
-  <div class="mt-4">
-    <a id="bookBtn" class="btn btn-danger">立即預約</a>
-    <button class="btn btn-outline-danger" onclick="addFavorite()">收藏</button>
-    <a href="tours.html" class="btn btn-secondary">返回列表</a>
-  </div>
+  <a id="book" class="btn btn-danger">立即預約</a>
+  <button id="fav" class="btn btn-outline-danger">收藏</button>
+  <a href="tours.html" class="btn btn-secondary">返回列表</a>
 </div>
 
 <script>
-const place = new URLSearchParams(location.search).get("place");
-
 const data = {
-  jeju: {
-    title: "濟州島",
-    img: "images/jeju.jpg",
-    intro: "濟州島是韓國最具代表性的度假島嶼，擁有火山地形、海岸瀑布與遼闊草原，是放慢步調、親近自然的最佳選擇。",
-    features: ["城山日出峰", "柱狀節理帶", "涉地可支", "濟州海岸公路"]
+  tokyo:{
+    title:"東京富士山",
+    img:"images/tokyo.jpg",
+    desc:"結合東京繁華與富士山壯麗景色，白天探索都市，夜晚欣賞夜景。",
+    spots:["東京鐵塔","淺草雷門","富士山五合目"]
   },
-  tokyo: {
-    title: "東京富士山",
-    img: "images/tokyo.jpg",
-    intro: "結合東京都會魅力與富士山壯麗景觀，一次體驗現代日本與自然風景的經典路線。",
-    features: ["東京鐵塔", "淺草雷門", "富士五湖", "忍野八海"]
+  jeju:{
+    title:"濟州島",
+    img:"images/jeju.jpg",
+    desc:"火山地貌與療癒海岸線，適合慢活與自然探索。",
+    spots:["城山日出峰","漢拏山","濟州瀑布"]
   },
-  hualien: {
-    title: "花蓮縱谷",
-    img: "images/hualien.jpg",
-    intro: "深入台灣山海交會之地，感受縱谷田園、太魯閣峽谷與慢活步調。",
-    features: ["太魯閣", "縱谷農田", "七星潭", "清水斷崖"]
+  hualien:{
+    title:"花蓮縱谷",
+    img:"images/hualien.jpg",
+    desc:"深入山海之間，體驗台灣最原始的自然美。",
+    spots:["伯朗大道","太魯閣","七星潭"]
   }
 };
 
-const d = data[place];
+const p = new URLSearchParams(location.search).get("place");
+document.getElementById("title").innerText = data[p].title;
+document.getElementById("img").src = data[p].img;
+document.getElementById("desc").innerText = data[p].desc;
+document.getElementById("spots").innerHTML = data[p].spots.map(s=>`<li>${s}</li>`).join("");
+document.getElementById("book").href = `booking.html?place=${p}`;
 
-document.getElementById("title").innerText = d.title;
-document.getElementById("photo").src = d.img;
-document.getElementById("intro").innerText = d.intro;
-
-const ul = document.getElementById("features");
-d.features.forEach(f => {
-  const li = document.createElement("li");
-  li.innerText = f;
-  ul.appendChild(li);
-});
-
-document.getElementById("bookBtn").href = `booking.html?place=${place}`;
-
-function addFavorite() {
-  let fav = JSON.parse(localStorage.getItem("favorites")) || [];
-  if (!fav.includes(place)) {
-    fav.push(place);
-    localStorage.setItem("favorites", JSON.stringify(fav));
-    alert("已加入我的收藏");
-  }
-}
+document.getElementById("fav").onclick = () => {
+  let f = JSON.parse(localStorage.getItem("fav")||"[]");
+  if(!f.includes(p)){ f.push(p); localStorage.setItem("fav",JSON.stringify(f)); alert("已收藏"); }
+};
 </script>
 
-<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
