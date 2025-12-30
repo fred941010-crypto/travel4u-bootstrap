@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>Travel4U</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-    .hero{
-      background:url("images/hualien.jpg") center/cover no-repeat;
-      height:80vh;
-      color:#fff;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Travel4U</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">Travel4U</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="index.html">首頁</a>
-      <a class="nav-link" href="tours.html">所有行程</a>
-      <a class="nav-link" href="search.html">搜尋</a>
-      <a class="nav-link" href="member.html">會員</a>
-      <a class="nav-link" href="support.html">客服</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+        <li class="nav-item"><a class="nav-link" href="tours.html">所有行程</a></li>
+        <li class="nav-item"><a class="nav-link" href="favorites.html">我的收藏</a></li>
+        <li class="nav-item"><a class="nav-link" href="search.html">搜尋</a></li>
+        <li class="nav-item"><a class="nav-link" href="member.html">會員</a></li>
+        <li class="nav-item"><a class="nav-link" href="support.html">客服</a></li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<div class="hero d-flex align-items-center text-center">
-  <div class="container">
-    <h1 class="display-4 fw-bold">探索世界，從這裡開始</h1>
-    <div class="mt-4">
-      <a href="tours.html" class="btn btn-warning btn-lg me-2">查看全部</a>
-      <a href="tours.html?country=japan" class="btn btn-outline-light btn-lg me-2">日本</a>
-      <a href="tours.html?country=korea" class="btn btn-outline-light btn-lg me-2">韓國</a>
-      <a href="tours.html?country=taiwan" class="btn btn-outline-light btn-lg">台灣</a>
+<header class="bg-dark text-white text-center p-5">
+  <h1>探索世界，從這裡開始</h1>
+  <p>精選亞洲人氣旅遊行程</p>
+  <a href="tours.html" class="btn btn-warning btn-lg">查看全部行程</a>
+</header>
+
+<div class="container my-5">
+  <h2>熱門行程</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="images/tokyo.jpg" class="img-fluid">
+      <h4>東京富士山</h4>
+      <a href="tour-detail.html?place=tokyo" class="btn btn-primary">查看詳情</a>
+    </div>
+    <div class="col-md-4">
+      <img src="images/jeju.jpg" class="img-fluid">
+      <h4>濟州島</h4>
+      <a href="tour-detail.html?place=jeju" class="btn btn-success">查看詳情</a>
+    </div>
+    <div class="col-md-4">
+      <img src="images/hualien.jpg" class="img-fluid">
+      <h4>花蓮縱谷</h4>
+      <a href="tour-detail.html?place=hualien" class="btn btn-warning">查看詳情</a>
     </div>
   </div>
 </div>
