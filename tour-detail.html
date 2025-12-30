@@ -2,36 +2,53 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>行程詳細</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap.min.css">
+<title>行程詳情</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark px-3">
-<a class="navbar-brand" href="index.html">Travel4U</a>
-</nav>
-
 <div class="container my-5">
-<img src="images/tokyo.jpg" class="img-fluid rounded mb-4">
-
-<h2>東京迪士尼・富士山 5 日</h2>
-
-<ul>
-<li>東京迪士尼樂園</li>
-<li>富士山五合目</li>
-<li>溫泉旅館住宿</li>
-<li>專業導遊隨團</li>
-</ul>
-
-<div class="mb-4">
-<button class="btn btn-success me-2" onclick="alert('已完成報名')">立即報名</button>
-<button class="btn btn-outline-primary me-2" onclick="alert('已加入收藏')">收藏</button>
-<button class="btn btn-outline-danger" onclick="alert('名額剩餘：6 位')">查詢名額</button>
+<div class="alert alert-info">
+行程詳情頁
 </div>
 
-<button class="btn btn-dark" onclick="location.href='tours.html'">返回行程列表</button>
+<div id="pic" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="images/tokyo.jpg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="images/jeju.jpg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="images/hualien.jpg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#pic" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#pic" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
 </div>
 
+<div class="mt-4 d-flex gap-2">
+<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#book">立即報名</button>
+<a href="tours.html" class="btn btn-secondary">返回列表</a>
+</div>
+</div>
+
+<div class="modal fade" id="book">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-body text-center">
+報名完成
+<button class="btn btn-success mt-3" data-bs-dismiss="modal">完成</button>
+</div>
+</div>
+</div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
