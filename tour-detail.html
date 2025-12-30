@@ -2,171 +2,52 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>行程詳情</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>行程介紹</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">Travel4U</a>
-    <a class="nav-link text-white" href="tours.html">所有行程</a>
-  </div>
-</nav>
+<div class="container my-5">
+  <h1 id="title"></h1>
+  <img id="photo" class="img-fluid my-4">
+  <p id="desc"></p>
 
-<div class="container mt-5 pt-5">
-  <h1 id="title" class="fw-bold mb-3"></h1>
-
-  <img id="photo" class="img-fluid rounded shadow mb-4">
-
-  <h3 class="fw-bold mt-4">行程特色介紹</h3>
-  <p id="desc" class="fs-5 lh-lg"></p>
-
-  <h4 class="fw-bold mt-4">精選景點</h4>
-  <ul id="spots" class="list-group my-3"></ul>
-
-  <div class="d-flex gap-3 mt-4 flex-wrap">
-    <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">立即預約</button>
-    <button id="favBtn" class="btn btn-outline-danger btn-lg">♡ 收藏</button>
-    <a href="tours.html" class="btn btn-secondary btn-lg">返回列表</a>
+  <div class="mt-4">
+    <a id="bookBtn" class="btn btn-danger me-2">立即預約</a>
+    <button onclick="alert('已加入收藏')" class="btn btn-outline-danger me-2">收藏</button>
+    <a href="tours.html" class="btn btn-secondary">返回列表</a>
   </div>
 </div>
-
-<!-- 預約 Modal -->
-<div class="modal fade" id="bookingModal">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">填寫旅客資料</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <label class="form-label">姓名</label>
-            <input class="form-control" placeholder="請輸入姓名">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">聯絡電話</label>
-            <input class="form-control" placeholder="09xxxxxxxx">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Email</label>
-            <input class="form-control" placeholder="example@gmail.com">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">出發日期</label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="col-12">
-            <label class="form-label">備註需求</label>
-            <textarea class="form-control" rows="3"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-        <button class="btn btn-danger" onclick="alert('已送出預約（示範）')">送出預約</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const p = new URLSearchParams(location.search).get("place");
+const p=new URLSearchParams(location.search).get("place");
 
-const data = {
-  tokyo: {
-    title: "東京富士山深度之旅",
-    img: "images/tokyo.jpg",
-    desc: `
-東京是一座結合極致現代感與深厚歷史文化的城市，從高樓林立的商業區到保存完好的傳統街道，
-每一個轉角都展現截然不同的風貌。本行程將帶你深入探索東京的多元魅力，
-不只是走馬看花，而是真正「走進」這座城市的日常與文化。
-
-行程安排包含東京經典地標與近郊自然景觀，
-從繁華的新宿、涉谷，到富有江戶風情的淺草雷門，
-再延伸至象徵日本精神的富士山地區。
-在專業導遊的帶領下，你將了解日本文化背後的故事，
-同時享受購物、美食與自然景色交織的完整體驗。
-
-這是一趟適合第一次造訪日本，
-也適合想更深入認識東京的旅客的經典行程。`,
-    spots: ["東京鐵塔", "淺草雷門", "新宿歌舞伎町", "富士山五合目"]
+const data={
+  tokyo:{
+    title:"東京富士山",
+    img:"images/tokyo.jpg",
+    desc:`本行程結合東京都會魅力與富士山自然奇景，
+    安排淺草寺、晴空塔、忍野八海、箱根溫泉，
+    適合第一次造訪日本的旅客，節奏舒適、內容豐富。`
   },
-
-  jeju: {
-    title: "濟州島自然療癒假期",
-    img: "images/jeju.jpg",
-    desc: `
-濟州島被譽為韓國的度假天堂，
-以獨特的火山地形、清澈的海岸線與悠閒的生活步調聞名。
-這趟行程特別為想要放慢腳步、親近自然的旅客所設計，
-遠離都市喧囂，享受真正的放鬆時光。
-
-旅程中將造訪世界自然遺產，
-如城山日出峰與漢拏山國家公園，
-同時安排海岸步道與特色咖啡廳，
-讓你在壯闊景色中感受濟州的慢活魅力。
-
-不論是情侶、朋友或家庭旅遊，
-這都是一趟兼具自然、美景與舒適節奏的理想行程。`,
-    spots: ["城山日出峰", "漢拏山", "涉地可支", "涯月海岸"]
+  jeju:{
+    title:"濟州島",
+    img:"images/jeju.jpg",
+    desc:`走訪城山日出峰、柱狀節理帶、漢拏山，
+    感受韓國最純粹的自然風景與慢活氛圍。`
   },
-
-  hualien: {
-    title: "花蓮縱谷山海慢活之旅",
-    img: "images/hualien.jpg",
-    desc: `
-花蓮縱谷擁有台灣最純淨的山海景色，
-這裡沒有繁忙的都市節奏，
-只有遼闊的山脈、湛藍的海岸與濃厚的人文氣息。
-本行程主打「慢活 × 深度體驗」，
-讓你用最放鬆的方式重新找回生活的步調。
-
-行程將帶你走進太魯閣國家公園，
-欣賞峽谷、斷崖與大自然鬼斧神工的景色，
-同時安排特色景點如瑞穗牧場、雲山水，
-體驗花蓮獨有的悠閒氛圍。
-
-這是一趟適合想遠離壓力、
-真正放空身心、親近自然的療癒系旅程。`,
-    spots: ["太魯閣國家公園", "清水斷崖", "瑞穗牧場", "雲山水"]
+  hualien:{
+    title:"花蓮縱谷",
+    img:"images/hualien.jpg",
+    desc:`深入太魯閣、縱谷農田、海岸線，
+    是最能體驗台灣自然之美的療癒行程。`
   }
 };
 
-document.getElementById("title").textContent = data[p].title;
-document.getElementById("photo").src = data[p].img;
-document.getElementById("desc").innerHTML = data[p].desc.replace(/\n/g, "<br><br>");
-
-const list = document.getElementById("spots");
-data[p].spots.forEach(s => {
-  const li = document.createElement("li");
-  li.className = "list-group-item";
-  li.textContent = s;
-  list.appendChild(li);
-});
-
-let favs = JSON.parse(localStorage.getItem("favs")) || [];
-const f = document.getElementById("favBtn");
-if (favs.includes(p)) {
-  f.classList.add("btn-danger");
-  f.textContent = "♥ 已收藏";
-}
-f.onclick = () => {
-  if (favs.includes(p)) {
-    favs = favs.filter(x => x !== p);
-    f.classList.remove("btn-danger");
-    f.textContent = "♡ 收藏";
-  } else {
-    favs.push(p);
-    f.classList.add("btn-danger");
-    f.textContent = "♥ 已收藏";
-  }
-  localStorage.setItem("favs", JSON.stringify(favs));
-};
+document.getElementById("title").innerText=data[p].title;
+document.getElementById("photo").src=data[p].img;
+document.getElementById("desc").innerText=data[p].desc;
+document.getElementById("bookBtn").href=`booking.html?place=${p}`;
 </script>
 
 </body>
