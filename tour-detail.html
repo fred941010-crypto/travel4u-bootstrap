@@ -1,52 +1,179 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<title>行程詳情</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程詳情 | Travel4U</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tour-header-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .itinerary-step {
+            border-left: 3px solid #0d6efd;
+            padding-left: 20px;
+            position: relative;
+        }
+        .itinerary-step::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: #0d6efd;
+            border-radius: 50%;
+        }
+        .sidebar-card {
+            position: sticky;
+            top: 100px;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-light">
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Travel4U</a>
-    <a class="text-white" href="favorites.html">我的收藏</a>
+    <a class="navbar-brand fw-bold" href="index.html"><i class="fa-solid fa-plane-departure me-2"></i>Travel4U</a>
+    <div class="ms-auto">
+        <a class="text-white text-decoration-none me-3" href="tours.html">所有行程</a>
+        <a class="text-white text-decoration-none" href="favorites.html"><i class="fa-solid fa-heart text-danger"></i> 我的收藏</a>
+    </div>
   </div>
 </nav>
 
-<div class="container my-5" id="content"></div>
+<div class="container my-5">
+    <div id="content" class="row">
+        </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Travel4U. All Rights Reserved.</p>
+    </div>
+</footer>
 
 <script src="js/app.js"></script>
 <script>
 const data = {
-  tokyo:{
-    title:'東京富士山',
-    img:'images/tokyo.jpg',
-    desc:'五天四夜深入東京與富士山，結合都市購物、自然景觀與經典文化。'
-  },
-  jeju:{
-    title:'濟州島',
-    img:'images/jeju.jpg',
-    desc:'火山地貌、瀑布海岸、慢活度假，適合放空與情侶旅遊。'
-  },
-  hualien:{
-    title:'花蓮縱谷',
-    img:'images/hualien.jpg',
-    desc:'縱谷農田、山海交會，是最療癒的台灣自然路線。'
-  }
+    tokyo: {
+        id: 'jp-tokyo-02',
+        title: '東京富士山 - 河口湖奢華五日遊',
+        img: 'images/tokyo.jpg',
+        price: '31,800',
+        desc: '深入東京與富士山，結合都市購物、自然景觀與經典文化。特別安排入住一晚溫泉飯店。',
+        highlights: ['直升機俯瞰東京', '富士山河口湖纜車', '銀座米其林料理'],
+        itinerary: [
+            { day: 'Day 1', title: '抵達東京 - 新宿繁華街漫步', detail: '從機場抵達飯店後，前往新宿歌舞伎町與東京都廳看夜景。' },
+            { day: 'Day 2', title: '富士山河口湖全日巡禮', detail: '專車前往富士五湖區，參訪大石公園與忍野八海。' },
+            { day: 'Day 3', title: '築地市場與雷門淺草寺', detail: '品嚐最新鮮的海鮮早午餐，體驗古老的淺草寺文化。' }
+        ]
+    },
+    jeju: {
+        id: 'kr-jeju-01',
+        title: '濟州島 - 療癒系海島漫活四日',
+        img: 'images/jeju.jpg',
+        price: '18,900',
+        desc: '火山地貌、瀑布海岸、慢活度假，適合放空與情侶旅遊。在漢拏山的森林中深呼吸。',
+        highlights: ['城山日出峰攻頂', '漢拏山自然生態', '海女廚房道地料理'],
+        itinerary: [
+            { day: 'Day 1', title: '漢拏山森林浴', detail: '入住度假村，享受被森林包圍的森林浴體驗。' },
+            { day: 'Day 2', title: '海岸公路與瀑布', detail: '沿著海岸公路開車，造訪正房瀑布與藥泉寺。' }
+        ]
+    },
+    hualien: {
+        id: 'tw-hualien-01',
+        title: '花蓮縱谷 - 山海交會三日深度遊',
+        img: 'images/hualien.jpg',
+        price: '8,800',
+        desc: '縱谷農田、山海交會，是最療癒的台灣自然路線。深度體驗原住民文化與自然壯麗。',
+        highlights: ['太魯閣國家公園', '七星潭聽海聲', '瑞穗牧場單車'],
+        itinerary: [
+            { day: 'Day 1', title: '太魯閣壯麗峽谷', detail: '深入燕子口、長春祠，見證大自然的鬼斧神工。' },
+            { day: 'Day 2', title: '七星潭與東大門夜市', detail: '下午在海邊疊石頭，晚上品嚐道地花蓮小吃。' }
+        ]
+    }
 };
 
-const p = new URLSearchParams(location.search).get('place');
+const p = new URLSearchParams(location.search).get('place') || 'tokyo';
 const t = data[p];
 
+// 生成亮點 HTML
+const highlightsHTML = t.highlights.map(h => `<li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>${h}</li>`).join('');
+
+// 生成行程表 HTML
+const itineraryHTML = t.itinerary.map(item => `
+    <div class="itinerary-step mb-4">
+        <h5 class="fw-bold">${item.day} - ${item.title}</h5>
+        <p class="text-muted">${item.detail}</p>
+    </div>
+`).join('');
+
 document.getElementById('content').innerHTML = `
-<h1>${t.title}</h1>
-<img src="${t.img}" class="img-fluid my-3">
-<p>${t.desc}</p>
-<a href="booking.html?place=${p}" class="btn btn-danger">立即預約</a>
-<button onclick="toggleFavorite('${p}','${t.title}','${t.img}')" class="btn btn-outline-danger ms-2">收藏</button>
-<a href="tours.html" class="btn btn-secondary ms-2">返回列表</a>
+    <div class="col-lg-8">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="tours.html">行程列表</a></li>
+                <li class="breadcrumb-item active">${t.title}</li>
+            </ol>
+        </nav>
+        <h1 class="fw-bold mb-3">${t.title}</h1>
+        <div class="d-flex mb-4 text-muted">
+            <span class="me-3"><i class="fa-solid fa-clock me-1"></i> 多種天數選擇</span>
+            <span class="me-3"><i class="fa-solid fa-earth-asia me-1"></i> 地道體驗</span>
+            <span><i class="fa-solid fa-star text-warning me-1"></i> 4.9 (240則評論)</span>
+        </div>
+        
+        <img src="${t.img}" class="tour-header-img shadow-sm mb-5" alt="${t.title}">
+
+        <h3 class="fw-bold mb-3">行程簡介</h3>
+        <p class="lead text-muted mb-5">${t.desc}</p>
+
+        <h3 class="fw-bold mb-3">行程亮點</h3>
+        <ul class="list-unstyled mb-5 row">
+            ${highlightsHTML}
+        </ul>
+
+        <h3 class="fw-bold mb-4">每日行程</h3>
+        <div class="itinerary-container">
+            ${itineraryHTML}
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card sidebar-card shadow-sm border-0 p-3">
+            <div class="card-body">
+                <h6 class="text-muted">優惠價</h6>
+                <h2 class="text-danger fw-bold mb-4">NT$ ${t.price} <small class="text-muted fs-6">起</small></h2>
+                
+                <div class="d-grid gap-2">
+                    <a href="booking.html?id=${t.id}" class="btn btn-primary btn-lg fw-bold">立即預定</a>
+                    <button class="btn btn-outline-danger btn-lg btn-favorite" 
+                            data-id="${t.id}" data-title="${t.title}" 
+                            data-price="${t.price.replace(',','')}" data-img="${t.img}">
+                        <i class="fa-regular fa-heart me-2"></i>加入收藏
+                    </button>
+                </div>
+                
+                <hr class="my-4">
+                <div class="small">
+                    <div class="d-flex mb-2"><i class="fa-solid fa-shield-halved me-2 text-primary"></i> 24小時安心保險</div>
+                    <div class="d-flex mb-2"><i class="fa-solid fa-bolt me-2 text-primary"></i> 立即確認預訂</div>
+                    <div class="d-flex"><i class="fa-solid fa-rotate-left me-2 text-primary"></i> 7天前免費取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
 `;
+
+// 渲染完後，呼叫 app.js 的函式來檢查收藏狀態
+if (typeof updateFavoriteButtons === 'function') {
+    updateFavoriteButtons();
+}
 </script>
 
 </body>
