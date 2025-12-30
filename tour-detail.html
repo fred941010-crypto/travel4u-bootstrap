@@ -7,48 +7,84 @@
 </head>
 <body>
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Travel4U</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="index.html">首頁</a>
+      <a class="nav-link" href="tours.html">所有行程</a>
+      <a class="nav-link" href="favorites.html">我的收藏</a>
+    </div>
+  </div>
+</nav>
+
 <div class="container my-5">
-  <h1 id="title"></h1>
-  <img id="photo" class="img-fluid my-4">
-  <p id="desc"></p>
+  <h1 id="title" class="mb-4"></h1>
+
+  <img id="photo" class="img-fluid rounded mb-4">
+
+  <p id="intro" class="fs-5"></p>
+
+  <h4 class="mt-5">行程特色</h4>
+  <ul id="features"></ul>
 
   <div class="mt-4">
-    <a id="bookBtn" class="btn btn-danger me-2">立即預約</a>
-    <button onclick="alert('已加入收藏')" class="btn btn-outline-danger me-2">收藏</button>
+    <a id="bookBtn" class="btn btn-danger">立即預約</a>
+    <button class="btn btn-outline-danger" onclick="addFavorite()">收藏</button>
     <a href="tours.html" class="btn btn-secondary">返回列表</a>
   </div>
 </div>
 
 <script>
-const p=new URLSearchParams(location.search).get("place");
+const place = new URLSearchParams(location.search).get("place");
 
-const data={
-  tokyo:{
-    title:"東京富士山",
-    img:"images/tokyo.jpg",
-    desc:`本行程結合東京都會魅力與富士山自然奇景，
-    安排淺草寺、晴空塔、忍野八海、箱根溫泉，
-    適合第一次造訪日本的旅客，節奏舒適、內容豐富。`
+const data = {
+  jeju: {
+    title: "濟州島",
+    img: "images/jeju.jpg",
+    intro: "濟州島是韓國最具代表性的度假島嶼，擁有火山地形、海岸瀑布與遼闊草原，是放慢步調、親近自然的最佳選擇。",
+    features: ["城山日出峰", "柱狀節理帶", "涉地可支", "濟州海岸公路"]
   },
-  jeju:{
-    title:"濟州島",
-    img:"images/jeju.jpg",
-    desc:`走訪城山日出峰、柱狀節理帶、漢拏山，
-    感受韓國最純粹的自然風景與慢活氛圍。`
+  tokyo: {
+    title: "東京富士山",
+    img: "images/tokyo.jpg",
+    intro: "結合東京都會魅力與富士山壯麗景觀，一次體驗現代日本與自然風景的經典路線。",
+    features: ["東京鐵塔", "淺草雷門", "富士五湖", "忍野八海"]
   },
-  hualien:{
-    title:"花蓮縱谷",
-    img:"images/hualien.jpg",
-    desc:`深入太魯閣、縱谷農田、海岸線，
-    是最能體驗台灣自然之美的療癒行程。`
+  hualien: {
+    title: "花蓮縱谷",
+    img: "images/hualien.jpg",
+    intro: "深入台灣山海交會之地，感受縱谷田園、太魯閣峽谷與慢活步調。",
+    features: ["太魯閣", "縱谷農田", "七星潭", "清水斷崖"]
   }
 };
 
-document.getElementById("title").innerText=data[p].title;
-document.getElementById("photo").src=data[p].img;
-document.getElementById("desc").innerText=data[p].desc;
-document.getElementById("bookBtn").href=`booking.html?place=${p}`;
+const d = data[place];
+
+document.getElementById("title").innerText = d.title;
+document.getElementById("photo").src = d.img;
+document.getElementById("intro").innerText = d.intro;
+
+const ul = document.getElementById("features");
+d.features.forEach(f => {
+  const li = document.createElement("li");
+  li.innerText = f;
+  ul.appendChild(li);
+});
+
+document.getElementById("bookBtn").href = `booking.html?place=${place}`;
+
+function addFavorite() {
+  let fav = JSON.parse(localStorage.getItem("favorites")) || [];
+  if (!fav.includes(place)) {
+    fav.push(place);
+    localStorage.setItem("favorites", JSON.stringify(fav));
+    alert("已加入我的收藏");
+  }
+}
 </script>
 
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
