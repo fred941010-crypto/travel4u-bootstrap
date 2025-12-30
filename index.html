@@ -1,163 +1,95 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <title>Travel4U 探索世界 | Bootstrap 旅遊網站</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-
-  <!-- Bootstrap Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-  />
-
-  <style>
-    .hero {
-      background: url("https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&w=1600")
-        center/cover no-repeat;
-      height: 85vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      color: white;
-    }
-
-    .hero-overlay {
-      background: rgba(0, 0, 0, 0.45);
-      position: absolute;
-      inset: 0;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 600px;
-      margin-left: 60px;
-    }
-
-    .search-box {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Travel4U</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Travel4U</a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navMenu"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Travel4U</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+        <li class="nav-item"><a class="nav-link" href="tours.html">行程</a></li>
+        <li class="nav-item">
+          <button class="btn btn-warning ms-2" data-bs-toggle="modal" data-bs-target="#contact">
+            聯絡
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">熱門行程</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">主題旅遊</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">精選目的地</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">顧客評價</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">聯絡我們</a></li>
-        </ul>
+<section class="py-5 text-center bg-light">
+  <div class="container">
+    <h1 class="fw-bold">Travel4U 旅遊平台</h1>
+    <p class="text-muted">無網路考試版本</p>
+    <div class="mt-4">
+      <a href="tours.html" class="btn btn-primary btn-lg me-2">查看行程</a>
+    </div>
+  </div>
+</section>
 
-        <a class="btn btn-warning ms-3">立即諮詢</a>
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="images/tokyo.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">東京富士山</h5>
+          <a href="tour-detail.html" class="btn btn-primary w-100">查看</a>
+        </div>
       </div>
     </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero mt-5">
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <span class="badge bg-warning text-dark mb-3">熱門・早鳥優惠 5% OFF</span>
-      <h1 class="fw-bold display-5">想去哪裡？</h1>
-      <h1 class="fw-bold display-5">Travel4U 帶你看世界</h1>
-      <p class="mt-3">
-        參考山富旅遊網站設計，整合國內外團體、自由行、機＋酒，一站式完成你的旅行規劃。
-      </p>
-
-      <!-- ⭐⭐ 這個按鈕已改成跳新分頁 → tours.html ⭐⭐ -->
-      <a href="tours.html" target="_blank" class="btn btn-primary btn-lg mt-3">
-        查看熱銷行程
-      </a>
-
-      <a href="#" class="btn btn-outline-light btn-lg mt-3 ms-2">
-        探索主題旅遊
-      </a>
-    </div>
-  </section>
-
-  <!-- Search Box -->
-  <section class="container my-5">
-    <div class="search-box shadow">
-      <h5 class="fw-bold"><i class="bi bi-search"></i> 快速搜尋行程</h5>
-
-      <div class="row g-3 mt-2">
-        <div class="col-md-6">
-          <label class="form-label">出發地</label>
-          <select class="form-select">
-            <option>台北</option>
-            <option>台中</option>
-            <option>高雄</option>
-          </select>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">目的地</label>
-          <select class="form-select">
-            <option>東京、首爾、沖繩…</option>
-          </select>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">出發日期</label>
-          <input type="date" class="form-control" />
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">天數</label>
-          <select class="form-select">
-            <option>3 天</option>
-            <option>5 天</option>
-            <option>7 天</option>
-          </select>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">旅遊類型</label>
-          <select class="form-select">
-            <option>跟團旅遊</option>
-            <option>自由行</option>
-            <option>客製化行程</option>
-          </select>
-        </div>
-
-        <div class="col-12">
-          <button class="btn btn-primary w-100">搜尋行程</button>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="images/island.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">濟州島</h5>
+          <a href="tour-detail.html" class="btn btn-success w-100">查看</a>
         </div>
       </div>
-
-      <p class="text-secondary small mt-2">
-        顯示結果僅為範例，實際報名請洽旅行社。
-      </p>
     </div>
-  </section>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="images/hualien.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">花蓮縱谷</h5>
+          <a href="tour-detail.html" class="btn btn-danger w-100">查看</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="modal fade" id="contact" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">聯絡我們</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control mb-2" placeholder="姓名">
+        <input class="form-control" placeholder="Email">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal">送出</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
