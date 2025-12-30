@@ -1,53 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<title>行程詳情</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>行程介紹</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
-<div class="container my-5">
-<div class="alert alert-info">
-行程詳情頁
+<div class="container my-5 text-center">
+  <h1 id="title"></h1>
+  <img id="photo" class="img-fluid my-4" style="max-width:600px">
+  <p id="desc"></p>
+  <a href="index.html" class="btn btn-dark">回首頁</a>
 </div>
 
-<div id="pic" class="carousel slide" data-bs-ride="carousel">
-<div class="carousel-inner">
-<div class="carousel-item active">
-<img src="images/tokyo.jpg" class="d-block w-100">
-</div>
-<div class="carousel-item">
-<img src="images/jeju.jpg" class="d-block w-100">
-</div>
-<div class="carousel-item">
-<img src="images/hualien.jpg" class="d-block w-100">
-</div>
-</div>
-<button class="carousel-control-prev" data-bs-target="#pic" data-bs-slide="prev">
-<span class="carousel-control-prev-icon"></span>
-</button>
-<button class="carousel-control-next" data-bs-target="#pic" data-bs-slide="next">
-<span class="carousel-control-next-icon"></span>
-</button>
-</div>
+<script>
+  const p = new URLSearchParams(location.search).get("place");
 
-<div class="mt-4 d-flex gap-2">
-<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#book">立即報名</button>
-<a href="tours.html" class="btn btn-secondary">返回列表</a>
-</div>
-</div>
+  const data = {
+    tokyo: {
+      title: "東京富士山",
+      img: "images/tokyo.jpg",
+      desc: "日本最具代表性的經典行程。"
+    },
+    jeju: {
+      title: "濟州島",
+      img: "images/jeju.jpg",
+      desc: "自然火山景觀與海岸風光。"
+    },
+    hualien: {
+      title: "花蓮縱谷",
+      img: "images/hualien.jpg",
+      desc: "台灣最美山海行程。"
+    }
+  };
 
-<div class="modal fade" id="book">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-body text-center">
-報名完成
-<button class="btn btn-success mt-3" data-bs-dismiss="modal">完成</button>
-</div>
-</div>
-</div>
-</div>
+  document.getElementById("title").innerText = data[p].title;
+  document.getElementById("photo").src = data[p].img;
+  document.getElementById("desc").innerText = data[p].desc;
+</script>
 
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>
