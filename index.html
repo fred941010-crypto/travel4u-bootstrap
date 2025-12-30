@@ -2,181 +2,36 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel4U | 探索世界，從這裡開始</title>
+    <title>Travel4U | 離線版</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="css/all.min.css">
     <style>
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-        .feature-icon {
-            font-size: 2.5rem;
-            color: #0d6efd;
-            margin-bottom: 1rem;
-        }
+        .hero-section { background: #333; height: 400px; display: flex; align-items: center; justify-content: center; color: white; }
+        .card-img-top { height: 200px; object-fit: cover; }
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">
-        <i class="fa-solid fa-plane-departure me-2"></i>Travel4U
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="tours.html">所有行程</a></li>
-        <li class="nav-item"><a class="nav-link" href="search.html">搜尋行程</a></li>
-        <li class="nav-item"><a class="nav-link" href="favorites.html"><i class="fa-regular fa-heart"></i> 我的收藏</a></li>
-        <li class="nav-item"><a class="nav-link" href="member.html">會員中心</a></li>
-        <li class="nav-item"><a class="nav-link" href="support.html">客服支援</a></li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container"><a class="navbar-brand" href="index.html">Travel4U</a></div>
 </nav>
-
-<header class="hero-section text-center">
-    <div class="container">
-        <h1 class="display-4 fw-bold">探索未知的旅程</h1>
-        <p class="lead mb-4">為您精選全球熱門景點，立即預訂您的下一場冒險</p>
-        <a href="tours.html" class="btn btn-primary btn-lg px-5 shadow">開始探索</a>
-    </div>
-</header>
-
-<section class="container my-5 py-4">
-    <div class="row text-center g-4">
+<header class="hero-section text-center"><h1>探索世界</h1></header>
+<div class="container my-5">
+    <div class="row">
         <div class="col-md-4">
-            <div class="p-3">
-                <i class="fa-solid fa-check-circle feature-icon"></i>
-                <h3>價格透明</h3>
-                <p class="text-muted">絕無隱藏費用，給您最實在的價格保證。</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-3">
-                <i class="fa-solid fa-earth-americas feature-icon"></i>
-                <h3>全球覆蓋</h3>
-                <p class="text-muted">超過 100 個國家的旅遊行程供您選擇。</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-3">
-                <i class="fa-solid fa-headset feature-icon"></i>
-                <h3>24/7 客服</h3>
-                <p class="text-muted">隨時隨地為您解決旅途中的任何問題。</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="bg-light py-5">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold">🔥 本週熱門行程</h2>
-            <a href="tours.html" class="btn btn-outline-primary">查看更多</a>
-        </div>
-        
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="日本京都">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-info text-dark">熱銷中</span>
-                            <span class="text-warning"><i class="fa-solid fa-star"></i> 4.8</span>
-                        </div>
-                        <h5 class="card-title">日本京都 - 千本鳥居與古都漫步</h5>
-                        <p class="card-text text-muted">五天四夜 | 含機票與住宿</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <h5 class="text-primary mb-0">NT$ 28,900</h5>
-                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
-                                    data-id="jp-kyoto-01" 
-                                    data-title="日本京都 - 千本鳥居" 
-                                    data-price="28900" 
-                                    data-img="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="威尼斯">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-danger">最後席次</span>
-                            <span class="text-warning"><i class="fa-solid fa-star"></i> 4.9</span>
-                        </div>
-                        <h5 class="card-title">義大利威尼斯 - 水都浪漫之旅</h5>
-                        <p class="card-text text-muted">八天七夜 | 深度旅遊</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <h5 class="text-primary mb-0">NT$ 65,000</h5>
-                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
-                                    data-id="it-venice-01" 
-                                    data-title="義大利威尼斯 - 水都浪漫" 
-                                    data-price="65000" 
-                                    data-img="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="巴黎">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-success">早鳥優惠</span>
-                            <span class="text-warning"><i class="fa-solid fa-star"></i> 4.7</span>
-                        </div>
-                        <h5 class="card-title">法國巴黎 - 艾菲爾鐵塔下的約定</h5>
-                        <p class="card-text text-muted">七天六夜 | 購物天堂</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <h5 class="text-primary mb-0">NT$ 58,800</h5>
-                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
-                                    data-id="fr-paris-01" 
-                                    data-title="法國巴黎 - 艾菲爾鐵塔" 
-                                    data-price="58800" 
-                                    data-img="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
+            <div class="card">
+                <img src="images/tokyo.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5>東京富士山</h5>
+                    <button class="btn btn-outline-danger btn-favorite" data-id="tokyo" data-title="東京富士山" data-price="31800" data-img="images/tokyo.jpg">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <a href="tour-detail.html?place=tokyo" class="btn btn-primary">詳情</a>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<footer class="bg-dark text-white py-4 mt-5">
-    <div class="container text-center">
-        <p class="mb-0">&copy; 2025 Travel4U. All Rights Reserved.</p>
-        <small class="text-muted">Designed for Traveler</small>
-    </div>
-</footer>
-
+</div>
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/app.js"></script> 
+<script src="js/app.js"></script>
 </body>
 </html>
