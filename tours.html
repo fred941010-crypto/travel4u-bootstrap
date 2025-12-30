@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<title>行程列表</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>行程列表</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container my-5">
-<h2>熱門行程</h2>
+  <h1>全部行程</h1>
 
-<ul class="nav nav-tabs">
-<li class="nav-item">
-<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#asia">亞洲</button>
-</li>
-<li class="nav-item">
-<button class="nav-link" data-bs-toggle="tab" data-bs-target="#tw">台灣</button>
-</li>
-</ul>
+  <ul class="list-group">
 
-<div class="tab-content mt-3">
-<div class="tab-pane fade show active" id="asia">
-<div class="accordion">
-<div class="accordion-item">
-<h2 class="accordion-header">
-<button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">
-東京富士山
-</button>
-</h2>
-<div id="a1" class="accordion-collapse collapse show">
-<div class="accordion-body">
-<a href="tour-detail.html?tour=tokyo" class="btn btn-primary">查看詳情</a>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <li class="list-group-item">
+      <img src="images/tokyo.jpg" width="150">
+      東京富士山
+      <a href="tour-detail.html?place=tokyo" class="btn btn-sm btn-primary float-end">查看</a>
+    </li>
 
-<div class="tab-pane fade" id="tw">
-<a href="tour-detail.html?tour=hualien" class="btn btn-success mt-3">花蓮縱谷</a>
-</div>
-</div>
+    <li class="list-group-item">
+      <img src="images/jeju.jpg" width="150">
+      濟州島
+      <a href="tour-detail.html?place=jeju" class="btn btn-sm btn-success float-end">查看</a>
+    </li>
 
-<a href="index.html" class="btn btn-secondary mt-4">返回首頁</a>
+    <li class="list-group-item">
+      <img src="images/hualien.jpg" width="150">
+      花蓮縱谷
+      <a href="tour-detail.html?place=hualien" class="btn btn-sm btn-warning float-end">查看</a>
+    </li>
+
+  </ul>
 </div>
 
 <script src="js/bootstrap.bundle.min.js"></script>
