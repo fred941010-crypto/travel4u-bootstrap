@@ -1,62 +1,185 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>熱門行程列表 | Travel4U</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>行程列表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
-<body class="bg-light">
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">Travel4U</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+        <li class="nav-item"><a class="nav-link active" href="tours.html">行程</a></li>
+        <li class="nav-item dropdown">
+          <button class="btn btn-secondary dropdown-toggle ms-2" data-bs-toggle="dropdown">
+            分類
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#japan">日本</a></li>
+            <li><a class="dropdown-item" href="#island">離島</a></li>
+            <li><a class="dropdown-item" href="#taiwan">台灣</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<div class="container py-5">
-  <h1 class="mb-4 fw-bold text-center">熱門行程列表</h1>
+<div class="container my-5">
+
+  <div class="btn-group mb-4">
+    <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#filter">
+      篩選條件
+    </button>
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#price">
+      價格說明
+    </button>
+    <a href="#tabs" class="btn btn-outline-dark">行程天數</a>
+  </div>
+
+  <div class="collapse mb-4" id="filter">
+    <div class="card card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <select class="form-select">
+            <option>全部地區</option>
+            <option>日本</option>
+            <option>台灣</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select">
+            <option>全部天數</option>
+            <option>3 天</option>
+            <option>5 天</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary w-100">套用</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row g-4">
 
-    <!-- 行程卡片 1 -->
-    <div class="col-md-4">
-      <div class="card shadow-sm">
-        <img src="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1600" class="card-img-top">
+    <div class="col-md-4" id="japan">
+      <div class="card h-100">
+        <img src="images/tokyo.jpg" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">東京迪士尼．富士山 5 日遊</h5>
-          <p class="card-text">人氣最高親子行程，含一晚溫泉旅館。</p>
-          <a href="tour-detail.html" target="_blank" class="btn btn-primary w-100">查看行程</a>
+          <h5 class="card-title">東京富士山</h5>
+          <span class="badge bg-primary">5 天</span>
+          <span class="badge bg-success">熱門</span>
+          <div class="mt-3 d-grid gap-2">
+            <a href="tour-detail.html" class="btn btn-primary">查看</a>
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#quick">
+              快速預覽
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 行程卡片 2 -->
-    <div class="col-md-4">
-      <div class="card shadow-sm">
-        <img src="https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=1600" class="card-img-top">
+    <div class="col-md-4" id="island">
+      <div class="card h-100">
+        <img src="images/island.jpg" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">濟州島秘境 4 日</h5>
-          <p class="card-text">火山島自然景觀、海岸步道、森林秘境。</p>
-          <a href="tour-detail.html" target="_blank" class="btn btn-primary w-100">查看行程</a>
+          <h5 class="card-title">濟州島</h5>
+          <span class="badge bg-warning text-dark">4 天</span>
+          <div class="mt-3 d-grid gap-2">
+            <a href="tour-detail.html" class="btn btn-success">查看</a>
+            <button class="btn btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#canvas">
+              說明
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 行程卡片 3 -->
-    <div class="col-md-4">
-      <div class="card shadow-sm">
-        <img src="https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=1600" class="card-img-top">
+    <div class="col-md-4" id="taiwan">
+      <div class="card h-100">
+        <img src="images/hualien.jpg" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">花東縱谷 2 日</h5>
-          <p class="card-text">國內人最愛的小旅行，沿著縱谷漫遊。</p>
-          <a href="tour-detail.html" target="_blank" class="btn btn-primary w-100">查看行程</a>
+          <h5 class="card-title">花蓮縱谷</h5>
+          <span class="badge bg-danger">2 天</span>
+          <div class="mt-3 d-grid gap-2">
+            <a href="tour-detail.html" class="btn btn-danger">查看</a>
+            <a href="#tabs" class="btn btn-outline-dark">看天數</a>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
+
+  <div class="mt-5" id="tabs">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day2">2 天</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#day4">4 天</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#day5">5 天</button>
+      </li>
+    </ul>
+    <div class="tab-content p-3 border border-top-0">
+      <div class="tab-pane fade show active" id="day2">短天數輕旅行</div>
+      <div class="tab-pane fade" id="day4">適合放鬆行程</div>
+      <div class="tab-pane fade" id="day5">完整深度旅遊</div>
+    </div>
+  </div>
+
 </div>
 
+<div class="modal fade" id="price">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>價格說明</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        價格僅為示意用途
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="quick">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>快速預覽</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        行程重點摘要
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" id="canvas">
+  <div class="offcanvas-header">
+    <h5>行程說明</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    詳細內容示意
+  </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
