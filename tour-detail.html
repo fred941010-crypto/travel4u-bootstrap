@@ -8,76 +8,117 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    .hero-img {
-      height: 50vh;
-      object-fit: cover;
+    .hero {
+      height: 55vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .info-box {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      height: 100%;
     }
   </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark fixed-top shadow">
   <div class="container">
     <a class="navbar-brand fw-bold" href="index.html">Travel4U</a>
-    <a class="text-white" href="tours.html">← 回行程列表</a>
+    <a class="text-white text-decoration-none" href="tours.html">← 返回行程列表</a>
   </div>
 </nav>
 
-<!-- Hero Image -->
-<img id="photo" class="w-100 hero-img">
+<!-- Hero -->
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container hero-content text-center">
+    <h1 id="title" class="display-4 fw-bold"></h1>
+    <p id="subtitle" class="lead mt-3"></p>
+  </div>
+</section>
 
 <!-- Content -->
 <section class="container my-5">
-  <h1 id="title" class="fw-bold mb-3"></h1>
-  <p id="desc" class="lead"></p>
+  <div class="row g-4">
 
-  <div class="row mt-4">
     <div class="col-md-4">
-      <div class="border p-3 text-center">
-        <strong>天數</strong>
-        <p id="days"></p>
+      <div class="info-box shadow-sm">
+        <h6 class="text-muted">行程天數</h6>
+        <h4 id="days"></h4>
       </div>
     </div>
+
     <div class="col-md-4">
-      <div class="border p-3 text-center">
-        <strong>價格</strong>
-        <p id="price"></p>
+      <div class="info-box shadow-sm">
+        <h6 class="text-muted">參考價格</h6>
+        <h4 id="price"></h4>
       </div>
     </div>
+
     <div class="col-md-4">
-      <div class="border p-3 text-center">
-        <strong>特色</strong>
-        <p id="feature"></p>
+      <div class="info-box shadow-sm">
+        <h6 class="text-muted">行程特色</h6>
+        <h4 id="feature"></h4>
       </div>
     </div>
+
   </div>
 
-  <a href="tours.html" class="btn btn-outline-dark mt-4">返回行程列表</a>
+  <div class="mt-5">
+    <h3 class="fw-bold mb-3">行程介紹</h3>
+    <p id="desc" class="fs-5"></p>
+  </div>
+
+  <div class="text-center mt-5">
+    <a href="tours.html" class="btn btn-outline-dark btn-lg">返回行程列表</a>
+  </div>
 </section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <small>© 2025 Travel4U</small>
+</footer>
 
 <script>
   const data = {
     tokyo: {
       title: "東京富士山",
+      subtitle: "城市繁華與自然奇景的完美結合",
       img: "images/tokyo.jpg",
-      desc: "結合東京繁華都市與富士山自然景觀的經典行程。",
+      desc: "結合東京都會魅力與富士山自然景觀，安排經典地標、文化體驗與購物行程，是初訪日本不可錯過的路線。",
       days: "5 天 4 夜",
       price: "NT$35,000",
       feature: "都市 × 自然"
     },
     jeju: {
       title: "濟州島",
+      subtitle: "火山島嶼與蔚藍海岸的療癒之旅",
       img: "images/jeju.jpg",
-      desc: "探索韓國最具代表性的火山島與海岸線。",
+      desc: "探索濟州島獨特的火山地形、海岸景觀與在地文化，適合想放慢步調、親近自然的旅人。",
       days: "4 天 3 夜",
       price: "NT$28,000",
       feature: "火山 × 海景"
     },
     hualien: {
       title: "花蓮縱谷",
+      subtitle: "台灣最純粹的山海慢活行程",
       img: "images/hualien.jpg",
-      desc: "感受台灣最純粹的山海與慢活節奏。",
+      desc: "深入花蓮縱谷，欣賞壯闊山景與遼闊稻田，感受遠離城市喧囂的自然療癒能量。",
       days: "3 天 2 夜",
       price: "NT$18,000",
       feature: "山海 × 療癒"
@@ -88,14 +129,15 @@
   const item = data[p];
 
   if (!item) {
-    document.body.innerHTML = "<p class='text-center mt-5'>參數錯誤，請從行程列表進入。</p>";
+    document.body.innerHTML = "<p class='text-center mt-5'>請從行程列表進入此頁</p>";
   } else {
     document.getElementById("title").innerText = item.title;
-    document.getElementById("photo").src = item.img;
+    document.getElementById("subtitle").innerText = item.subtitle;
     document.getElementById("desc").innerText = item.desc;
     document.getElementById("days").innerText = item.days;
     document.getElementById("price").innerText = item.price;
     document.getElementById("feature").innerText = item.feature;
+    document.getElementById("hero").style.backgroundImage = `url('${item.img}')`;
   }
 </script>
 
