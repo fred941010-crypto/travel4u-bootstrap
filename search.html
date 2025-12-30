@@ -1,18 +1,158 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<title>搜尋</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜尋行程 | Travel4U</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .search-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .search-input {
+            height: 60px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            padding-left: 30px;
+        }
+        .tag-badge {
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 8px 15px;
+        }
+        .tag-badge:hover {
+            background-color: #0d6efd !important;
+            color: white !important;
+        }
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+    </style>
 </head>
-<body>
-<nav class="navbar navbar-dark bg-dark">
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Travel4U</a>
+    <a class="navbar-brand fw-bold" href="index.html"><i class="fa-solid fa-plane-departure me-2"></i>Travel4U</a>
+    <div class="ms-auto">
+        <a class="text-white text-decoration-none me-3" href="tours.html">所有行程</a>
+        <a class="text-white text-decoration-none" href="favorites.html"><i class="fa-solid fa-heart text-danger"></i> 我的收藏</a>
+    </div>
   </div>
 </nav>
+
 <div class="container my-5">
-<input class="form-control" placeholder="輸入關鍵字">
+    <div class="search-container mb-5">
+        <h2 class="text-center fw-bold mb-4">想去哪裡玩？</h2>
+        <div class="position-relative mb-3">
+            <input type="text" id="searchInput" class="form-control search-input shadow-sm" placeholder="輸入目的地、景點或主題關鍵字...">
+            <i class="fa-solid fa-magnifying-glass position-absolute" style="right: 25px; top: 20px; font-size: 1.2rem; color: #aaa;"></i>
+        </div>
+        <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
+            <span class="text-muted me-2">熱門搜尋：</span>
+            <span class="badge rounded-pill bg-white text-dark border tag-badge" onclick="fillSearch('日本')">日本</span>
+            <span class="badge rounded-pill bg-white text-dark border tag-badge" onclick="fillSearch('富士山')">富士山</span>
+            <span class="badge rounded-pill bg-white text-dark border tag-badge" onclick="fillSearch('濟州島')">濟州島</span>
+            <span class="badge rounded-pill bg-white text-dark border tag-badge" onclick="fillSearch('花蓮')">花蓮</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h4 id="resultCount" class="mb-4 fw-bold text-muted" style="display:none;">找到 0 個行程</h4>
+        </div>
+    </div>
+    
+    <div id="resultsList" class="row g-4">
+        </div>
+
+    <div id="noResults" class="text-center py-5" style="display:none;">
+        <i class="fa-solid fa-map-location-dot fa-4x text-light mb-3"></i>
+        <h3>找不到符合的行程</h3>
+        <p class="text-muted">換個關鍵字試試看，或是看看我們的熱門推薦！</p>
+    </div>
 </div>
+
+<script src="js/app.js"></script>
+<script>
+// 模擬行程資料庫
+const allTours = [
+    { id: 'jp-tokyo-02', title: '東京富士山 - 河口湖奢華五日', price: '31800', img: 'images/tokyo.jpg', tags: '日本 富士山 東京 國外' },
+    { id: 'kr-jeju-01', title: '韓國濟州島 - 療癒系海島漫活', price: '18900', img: 'images/jeju.jpg', tags: '韓國 濟州島 海島 國外' },
+    { id: 'tw-hualien-01', title: '台灣花蓮 - 縱谷山海深度遊', price: '8800', img: 'images/hualien.jpg', tags: '台灣 花蓮 國內 縱谷' }
+];
+
+const searchInput = document.getElementById('searchInput');
+const resultsList = document.getElementById('resultsList');
+const noResults = document.getElementById('noResults');
+const resultCount = document.getElementById('resultCount');
+
+// 監聽輸入事件 (即時搜尋)
+searchInput.addEventListener('input', () => {
+    performSearch(searchInput.value.trim());
+});
+
+function performSearch(keyword) {
+    if (keyword === "") {
+        renderTours(allTours);
+        resultCount.style.display = 'none';
+        return;
+    }
+
+    const filtered = allTours.filter(tour => 
+        tour.title.includes(keyword) || tour.tags.includes(keyword)
+    );
+
+    renderTours(filtered);
+    
+    // 更新搜尋數量文字
+    resultCount.style.display = 'block';
+    resultCount.innerText = `找到 ${filtered.length} 個行程`;
+
+    // 顯示無結果提示
+    noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+function renderTours(tours) {
+    resultsList.innerHTML = tours.map(t => `
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <img src="${t.img}" class="card-img-top" alt="${t.title}">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">${t.title}</h5>
+                    <p class="text-danger fw-bold mb-3">NT$ ${Number(t.price).toLocaleString()}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="tour-detail.html?place=${t.id.split('-')[1]}" class="btn btn-primary btn-sm px-4">查看詳情</a>
+                        <button class="btn btn-outline-danger btn-sm btn-favorite" 
+                                data-id="${t.id}" data-title="${t.title}" 
+                                data-price="${t.price}" data-img="${t.img}">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // 重新檢查愛心狀態 (app.js 內的功能)
+    if (typeof updateFavoriteButtons === 'function') {
+        updateFavoriteButtons();
+    }
+}
+
+function fillSearch(tag) {
+    searchInput.value = tag;
+    performSearch(tag);
+}
+
+// 頁面初始化顯示全部
+renderTours(allTours);
+</script>
+
 </body>
 </html>
