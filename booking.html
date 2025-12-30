@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>預約表單</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-5">
+<h2>填寫旅客資料</h2>
+
+<form onsubmit="event.preventDefault();alert('預約送出成功');location.href='index.html'">
+  <div class="mb-3">
+    <label>姓名</label>
+    <input class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>電話</label>
+    <input class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>備註</label>
+    <textarea class="form-control"></textarea>
+  </div>
+  <button class="btn btn-danger">送出預約</button>
+</form>
+</div>
+
+</body>
+</html>
