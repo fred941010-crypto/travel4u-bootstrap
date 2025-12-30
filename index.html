@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* 首頁大圖樣式 */
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -107,7 +106,13 @@
                         <p class="card-text text-muted">五天四夜 | 含機票與住宿</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <h5 class="text-primary mb-0">NT$ 28,900</h5>
-                            <button class="btn btn-outline-danger btn-sm" onclick="alert('尚未實作 JS 邏輯')"><i class="fa-regular fa-heart"></i></button>
+                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
+                                    data-id="jp-kyoto-01" 
+                                    data-title="日本京都 - 千本鳥居" 
+                                    data-price="28900" 
+                                    data-img="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +130,13 @@
                         <p class="card-text text-muted">八天七夜 | 深度旅遊</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <h5 class="text-primary mb-0">NT$ 65,000</h5>
-                            <button class="btn btn-outline-danger btn-sm"><i class="fa-regular fa-heart"></i></button>
+                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
+                                    data-id="it-venice-01" 
+                                    data-title="義大利威尼斯 - 水都浪漫" 
+                                    data-price="65000" 
+                                    data-img="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -143,7 +154,13 @@
                         <p class="card-text text-muted">七天六夜 | 購物天堂</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <h5 class="text-primary mb-0">NT$ 58,800</h5>
-                            <button class="btn btn-outline-danger btn-sm"><i class="fa-regular fa-heart"></i></button>
+                            <button class="btn btn-outline-danger btn-sm btn-favorite" 
+                                    data-id="fr-paris-01" 
+                                    data-title="法國巴黎 - 艾菲爾鐵塔" 
+                                    data-price="58800" 
+                                    data-img="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -154,7 +171,7 @@
 
 <footer class="bg-dark text-white py-4 mt-5">
     <div class="container text-center">
-        <p class="mb-0">&copy; 2024 Travel4U. All Rights Reserved.</p>
+        <p class="mb-0">&copy; 2025 Travel4U. All Rights Reserved.</p>
         <small class="text-muted">Designed for Traveler</small>
     </div>
 </footer>
