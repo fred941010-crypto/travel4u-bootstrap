@@ -2,20 +2,112 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>預約行程 | Travel4U</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預定資料填寫 | Travel4U</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f4f7f9; }
+        .booking-container { max-width: 800px; margin: 50px auto; }
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: none;
+        }
+        .step-header { border-bottom: 2px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
+        .form-label { font-weight: 600; margin-top: 15px; }
+        .tour-info-badge {
+            background: #e7f1ff;
+            color: #0d6efd;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div class="container my-5 p-4 bg-white shadow-sm rounded">
-    <h2 class="fw-bold mb-4">填寫旅客資料</h2>
-    <form>
-        <div class="mb-3"><label class="form-label">姓名</label><input type="text" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">電話</label><input type="tel" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
-        <button type="button" class="btn btn-danger w-100 py-3" onclick="alert('預約成功！');window.close();">確認送出預約</button>
-    </form>
+<body>
+
+<div class="container booking-container">
+    <div class="text-center mb-4">
+        <a href="index.html" class="text-decoration-none text-dark h3 fw-bold">
+            <i class="fa-solid fa-plane-departure text-primary me-2"></i>Travel4U
+        </a>
+    </div>
+
+    <div class="form-card">
+        <div class="step-header text-center">
+            <div class="tour-info-badge" id="displayTourName">正在載入行程...</div>
+            <h2 class="fw-bold">填寫旅客資料</h2>
+            <p class="text-muted">請填寫正確資訊，以便我們為您保留名額並寄送電子憑證</p>
+        </div>
+
+        <form id="finalBookingForm">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label"><i class="fa-solid fa-user me-2 text-primary"></i>代表人姓名</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="請輸入中文全名" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label"><i class="fa-solid fa-phone me-2 text-primary"></i>聯絡電話</label>
+                    <input type="tel" class="form-control form-control-lg" placeholder="0912-345-678" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="form-label"><i class="fa-solid fa-envelope me-2 text-primary"></i>電子信箱</label>
+                    <input type="email" class="form-control form-control-lg" placeholder="example@email.com" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label"><i class="fa-solid fa-calendar-days me-2 text-primary"></i>預計出發日</label>
+                    <input type="date" class="form-control form-control-lg" required>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label"><i class="fa-solid fa-users me-2 text-primary"></i>同行人數</label>
+                    <select class="form-select form-select-lg">
+                        <option value="1">1位</option>
+                        <option value="2" selected>2位</option>
+                        <option value="3">3位</option>
+                        <option value="4">4位以上</option>
+                    </select>
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <p class="small text-muted mb-4">點擊「送出」代表您同意本平台的服務條款與隱私權聲明</p>
+                    <button type="submit" class="btn btn-danger btn-lg px-5 py-3 fw-bold shadow">
+                        確認送出預約 <i class="fa-solid fa-paper-plane ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<script src="js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // 簡單的資料對照表
+    const tourNames = {
+        'jp-tokyo-02': '東京富士山五日遊',
+        'kr-jeju-01': '韓國濟州島漫活四日',
+        'tw-hualien-01': '花蓮縱谷深度三日遊'
+    };
+
+    // 從 URL 取得 ID
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id') || 'jp-tokyo-02';
+    
+    // 更新顯示名稱
+    document.getElementById('displayTourName').innerText = `預約行程：${tourNames[id] || '精選行程'}`;
+
+    // 送出成功後的處理
+    document.getElementById('finalBookingForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('預約成功！我們將有專人與您聯繫。本分頁即將關閉。');
+        window.close(); // 送出後自動嘗試關閉這個分頁
+    });
+</script>
+
 </body>
 </html>
